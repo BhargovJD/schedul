@@ -2,7 +2,7 @@ name: Daily 4:30 PM IST Workflow
 
 on:
   schedule:
-    - cron: "0 11 * * *"   # 11:00 UTC = 4:30 PM IST
+    - cron: "14 11 * * *"   # 11:14 UTC = 4:44 PM IST
   workflow_dispatch:         # Optional: manual run button
 
 jobs:
