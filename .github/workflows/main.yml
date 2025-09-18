@@ -1,15 +1,27 @@
-name: Daily 4:30 PM IST Workflow
+name: DEBUG - scheduler every 5 minutes
 
 on:
   schedule:
-    - cron: "14 11 * * *"   # 11:14 UTC = 4:44 PM IST
-  workflow_dispatch:         # Optional: manual run button
+    - cron: "*/5 * * * *"    # every 5 minutes (temporary test)
+  workflow_dispatch:        # also allows manual runs
 
 jobs:
-  cron-demo:
+  debug:
     runs-on: ubuntu-latest
     steps:
-      - name: Show current time
+      - name: Show runner & event
         run: |
-          echo "Workflow ran at $(date -u) UTC"
-          echo "Which is 4:30 PM IST"
+          echo "---- DEBUG START ----"
+          echo "UTC now: $(date -u)"
+          echo "Local now (Asia/Kolkata):"; TZ='Asia/Kolkata' date
+          echo "GITHUB_EVENT_NAME: $GITHUB_EVENT_NAME"
+          echo "GITHUB_REF: $GITHUB_REF"
+          echo "GITHUB_REPOSITORY: $GITHUB_REPOSITORY"
+          echo "Workflow file present in default branch:"
+          ls -la .github/workflows || true
+          echo "---- ENV SAMPLE ----"
+          echo "GITHUB_WORKFLOW: $GITHUB_WORKFLOW"
+          echo "GITHUB_RUN_ID: $GITHUB_RUN_ID"
+          echo "GITHUB_RUN_NUMBER: $GITHUB_RUN_NUMBER"
+          echo "GITHUB_ACTION: $GITHUB_ACTION"
+          echo "---- END ----"
