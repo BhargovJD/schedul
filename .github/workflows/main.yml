@@ -1,0 +1,15 @@
+name: Daily 4:30 PM IST Workflow
+
+on:
+  schedule:
+    - cron: "0 11 * * *"   # 11:00 UTC = 4:30 PM IST
+  workflow_dispatch:         # Optional: manual run button
+
+jobs:
+  cron-demo:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Show current time
+        run: |
+          echo "Workflow ran at $(date -u) UTC"
+          echo "Which is 4:30 PM IST"
